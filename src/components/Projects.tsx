@@ -1,6 +1,10 @@
 
 import { useState } from 'react';
 import { Globe, Image, Video } from 'lucide-react';
+import whisperingvalley from '../assests/images/whisperingvalley.png'
+import gauravmotors from '../assests/images/gauravmotors.png'
+import welcometrade from '../assests/images/welcometrade.png'
+import { link } from 'fs';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -8,12 +12,12 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-commerce Platform',
+      title: 'Whispering Valley Resort',
       category: 'website',
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop',
+      image: whisperingvalley,
       description: 'Modern e-commerce website with payment integration and inventory management.',
-      tech: ['React', 'Node.js', 'MongoDB'],
-      link: '#'
+      tech: ['React', 'Tailwind CSS', 'Framer Motion'],
+      link: 'https://resortr.netlify.app/'
     },
     {
       id: 2,
@@ -35,15 +39,24 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: 'Restaurant Website',
+      title: 'Gaurav Motors',
       category: 'website',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop',
+      image: gauravmotors,
       description: 'Responsive restaurant website with online ordering and reservation system.',
-      tech: ['Vue.js', 'Firebase'],
-      link: '#'
+      tech: ['React', 'Tailwind CSS', 'Framer Motion'],
+      link: 'https://gauravmotors.in/'
     },
     {
       id: 5,
+      title: 'Welcome Trade',
+      category: 'website',
+      image: welcometrade,
+      description: 'Responsive restaurant website with online ordering and reservation system.',
+      tech: ['React', 'Tailwind CSS', 'Framer Motion'],
+      link: "https://welcometrade.netlify.app/"
+    },
+    {
+      id: 6,
       title: 'Social Media Campaign',
       category: 'design',
       image: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop',
@@ -52,7 +65,7 @@ const Projects = () => {
       link: '#'
     },
     {
-      id: 6,
+      id: 7,
       title: 'Corporate Promo Reel',
       category: 'video',
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop',
@@ -69,8 +82,8 @@ const Projects = () => {
     { key: 'video', label: 'Videos', icon: Video }
   ];
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
+  const filteredProjects = activeFilter === 'all'
+    ? projects
     : projects.filter(project => project.category === activeFilter);
 
   return (
@@ -91,11 +104,10 @@ const Projects = () => {
             <button
               key={filter.key}
               onClick={() => setActiveFilter(filter.key)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                activeFilter === filter.key
+              className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeFilter === filter.key
                   ? 'bg-gradient-to-r from-diginock-blue to-diginock-purple text-white shadow-lg'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+                }`}
             >
               {filter.icon && <filter.icon className="w-4 h-4" />}
               {filter.label}
@@ -136,10 +148,10 @@ const Projects = () => {
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
                 <p className="text-gray-600 mb-4">{project.description}</p>
-                
-                <button className="bg-gradient-to-r from-diginock-blue to-diginock-purple text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+
+                <a href={project.link} target='_blank'><button className="bg-gradient-to-r from-diginock-blue to-diginock-purple text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                   View Project
-                </button>
+                </button></a>
               </div>
             </div>
           ))}
